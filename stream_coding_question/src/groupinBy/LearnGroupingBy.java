@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import comparator.Employee;
@@ -55,12 +56,19 @@ public class LearnGroupingBy {
 			        Collectors.summingInt(Employee::getSalary)));
 		
 		System.out.println(salaryByDept);
-		
+			
 //		Find the highest-paid employee in each department
 		
 		Map<String, Optional<Employee>> get5 = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
 		System.out.println(get5);
+		
+		// find the occurrence of each character
+		String str5 = "UmangGargg";
+		Map<Object, Long> get6 = Arrays.stream(str5.split("")).collect(Collectors.groupingBy(x->x, Collectors.counting()));
+		System.out.println("Total occurence of words " + get6);
 	}
+	
+
 	
 }
 
